@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import ClippedDrawer from "./components/Toolbar/Toolbar";
+import { Box, Container } from "@mui/material";
+import AppRoutes from "./Routes";
+import { ThemeProvider } from "context/ThemeContext";
 
-function App() {
+function App() {  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <ThemeProvider>
+        <ClippedDrawer appName="Iceland App" />
+        <Box
+          component="main"
+          sx={{ display: "flex", flexGrow: 1, pt: 8, pl: 30 }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Container
+            sx={{
+              position: "relative",
+              height: "calc(100vh - 64px)",
+              py: "2em",
+            }}
+          >
+            <AppRoutes />
+          </Container>
+        </Box>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
